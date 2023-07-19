@@ -100,6 +100,9 @@ func (s StandardErrorReply) ToBytes() []byte {
 	return []byte("-" + s.Status + CRLF)
 }
 
+/**
+*判断回复是否是错误回复
+ */
 func IsErrorReply(reply resp.Reply) bool {
 	return reply.ToBytes()[0] == '-'
 }
