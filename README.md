@@ -1,2 +1,3 @@
 # 使用golang实现redis
-- [x] resp协议实现
+- [ ] resp协议实现
+- [ ] 基本数据结构实现
