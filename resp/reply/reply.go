@@ -67,6 +67,10 @@ func (s StatusReply) ToBytes() []byte {
 	return []byte("+" + s.Status + CRLF)
 }
 
+func MakeStatusReply(status string) *StatusReply {
+	return &StatusReply{Status: status}
+}
+
 /**
 *IntReply
  */
@@ -84,6 +88,10 @@ type ErrorReply interface {
 	ToBytes() []byte
 }
 
+func MakeIntReply(code int) *IntReply {
+	return &IntReply{Code: int64(code)}
+}
+
 /**
 *StandardErrorReply
  */
@@ -98,6 +106,10 @@ func (s StandardErrorReply) Error() string {
 
 func (s StandardErrorReply) ToBytes() []byte {
 	return []byte("-" + s.Status + CRLF)
+}
+
+func MakeStandardErrorReply(status string) *StandardErrorReply {
+	return &StandardErrorReply{Status: status}
 }
 
 /**
