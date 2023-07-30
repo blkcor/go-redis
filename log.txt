@@ -1,3 +1,14 @@
 2023/07/29 23:16:40 hello
 2023/07/29 23:25:42 This is a info log
 2023/07/29 23:27:40 Hello, world. blkcor
+2023/07/30 09:55:20 tcp server listening on :0
+2023/07/30 09:56:01 shutting down
+2023/07/30 09:56:01 accept error accept tcp [::]:51137: use of closed network connection
+2023/07/30 09:56:01 Closing echo handler
+2023/07/30 09:56:02 tcp server listening on 0.0.0.0:6379
+2023/07/30 10:00:28 accept 127.0.0.1:52540
+2023/07/30 10:01:02 shutting down
+2023/07/30 10:01:02 accept error accept tcp [::]:6379: use of closed network connection
+2023/07/30 10:01:02 Closing echo handler
+2023/07/30 10:01:02 Error reading from connection: %sread tcp 127.0.0.1:6379->127.0.0.1:52540: use of closed network connection
+2023/07/30 10:01:02 Closing echo handler

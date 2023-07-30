@@ -27,7 +27,7 @@ func (w *Wait) Wait() {
 
 // WaitWithTimeout blocks until the WaitGroup counter is zero or timeout
 // return true if timeout
-func (w *Wait) WaitWithTimeout(timeout int) bool {
+func (w *Wait) WaitWithTimeout(timeout time.Duration) bool {
 	c := make(chan bool, 1)
 	go func() {
 		w.wg.Wait()
@@ -38,7 +38,7 @@ func (w *Wait) WaitWithTimeout(timeout int) bool {
 	select {
 	case <-c:
 		return false
-	case <-time.After(time.Duration(timeout)):
+	case <-time.After(timeout):
 		return true
 	}
 }
