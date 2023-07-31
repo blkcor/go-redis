@@ -12,10 +12,8 @@ func (p PongReply) ToBytes() []byte {
 	return pongBytes
 }
 
-var thePongReply = new(PongReply)
-
 func MakePongReply() *PongReply {
-	return thePongReply
+	return &PongReply{}
 }
 
 /**
@@ -30,10 +28,8 @@ func (o OkReply) ToBytes() []byte {
 	return okBytes
 }
 
-var theOkReply = new(OkReply)
-
 func MakeOkReply() *OkReply {
-	return theOkReply
+	return &OkReply{}
 }
 
 /**
@@ -48,14 +44,12 @@ func (n NullBulkReply) ToBytes() []byte {
 	return nullBulkBytes
 }
 
-var theNullBulkReply = new(NullBulkReply)
-
 func MakeNullBulkReply() *NullBulkReply {
-	return theNullBulkReply
+	return &NullBulkReply{}
 }
 
 /**
-EmptyMultiBulkReply
+EmptyMultiBulkReply 空结构体
 */
 
 type EmptyMultiBulkReply struct{}
@@ -65,11 +59,8 @@ var emptyMultiBulkBytes = []byte("*0\r\n")
 func (e EmptyMultiBulkReply) ToBytes() []byte {
 	return emptyMultiBulkBytes
 }
-
-var theEmptyMultiBulkReply = new(EmptyMultiBulkReply)
-
 func MakeEmptyMultiBulkReply() *EmptyMultiBulkReply {
-	return theEmptyMultiBulkReply
+	return &EmptyMultiBulkReply{}
 }
 
 /**
@@ -83,9 +74,6 @@ var noBytes = []byte("")
 func (n NoReply) ToBytes() []byte {
 	return noBytes
 }
-
-var theNoReply = new(NoReply)
-
 func MakeNoReply() *NoReply {
-	return theNoReply
+	return &NoReply{}
 }
