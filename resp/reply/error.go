@@ -1,15 +1,14 @@
 package reply
 
 /*
-*
-UnKnownErrorReply
+UnKnownErrorReply 未知错误回复
 */
 type UnKnownErrorReply struct{}
 
-var unKnowErrorBytes = []byte("-ERR unknown\r\n")
+var unKnowErrorBytes = []byte("-Err unknown\r\n")
 
 func (e *UnKnownErrorReply) Error() string {
-	return "-ERR unknown"
+	return "Err unknown"
 }
 
 func (e *UnKnownErrorReply) ToBytes() []byte {
@@ -17,63 +16,71 @@ func (e *UnKnownErrorReply) ToBytes() []byte {
 }
 
 /*
-*
-ArgNumErrorReply
+ArgNumErrorReply 参数数量错误回复
+@Cmd 用户输入的命令
 */
 type ArgNumErrorReply struct {
 	Cmd string
 }
 
 func (e *ArgNumErrorReply) Error() string {
-	return "-ERR wrong number of arguments of " + e.Cmd + "command\r\n"
+	return "-Err wrong number of arguments of " + e.Cmd + "command\r\n"
 }
 
 func (e *ArgNumErrorReply) ToBytes() []byte {
-	return []byte("-ERR wrong number of arguments of " + e.Cmd + "command\r\n")
+	return []byte("-Err wrong number of arguments of " + e.Cmd + "command\r\n")
 }
 
 func MakeArgNumErrorReply(cmd string) *ArgNumErrorReply {
 	return &ArgNumErrorReply{cmd}
 }
 
-/**
-SyntaxErrorReply
+/*
+SyntaxErrorReply 语法错误回复
 */
 
 type SyntaxErrorReply struct{}
 
 func (e *SyntaxErrorReply) Error() string {
-	return "-ERR syntax error\r\n"
+	return "-Err syntax error\r\n"
 }
 
 func (e *SyntaxErrorReply) ToBytes() []byte {
-	return []byte("-ERR syntax error\r\n")
+	return []byte("-Err syntax error\r\n")
+}
+
+func MakeSyntaxErrorReply() *SyntaxErrorReply {
+	return &SyntaxErrorReply{}
 }
 
 /**
-WrongTypeErrorReply
+WrongTypeErrorReply 类型错误回复
 */
 
 type WrongTypeErrorReply struct{}
 
 func (e *WrongTypeErrorReply) Error() string {
-	return "-ERR wrong type\r\n"
+	return "-Err wrong type\r\n"
 }
 
 func (e *WrongTypeErrorReply) ToBytes() []byte {
-	return []byte("-ERR wrong type\r\n")
+	return []byte("-Err wrong type\r\n")
 }
 
-/**
-ProtocolErrorReply
+func MakeWrongTypeErrorReply() *WrongTypeErrorReply {
+	return &WrongTypeErrorReply{}
+}
+
+/*
+ProtocolErrorReply 协议错误回复
 */
 
 type ProtocolErrorReply struct{}
 
 func (e *ProtocolErrorReply) Error() string {
-	return "-ERR protocol error\r\n"
+	return "-Err protocol error\r\n"
 }
 
 func (e *ProtocolErrorReply) ToBytes() []byte {
-	return []byte("-ERR protocol error\r\n")
+	return []byte("-Err protocol error\r\n")
 }

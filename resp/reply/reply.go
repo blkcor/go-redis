@@ -11,9 +11,10 @@ var (
 	CRLF               = "\r\n"
 )
 
-/**
-* BulkReply
- */
+/*
+BulkReply 块回复（这里将字符串转换成redis协议支持的格式）
+@Arg 回复的字符串
+*/
 type BulkReply struct {
 	Arg []byte
 }
@@ -30,9 +31,11 @@ func MakeBulkReply(arg []byte) *BulkReply {
 	return &BulkReply{arg}
 }
 
-/**
-* MultiBulkReply
- */
+/*
+MultiBulkReply 多块回复
+@Args 回复的字符串数组
+*/
+
 type MultiBulkReply struct {
 	Args [][]byte
 }
@@ -55,9 +58,10 @@ func MakeMultiBulkReply(args [][]byte) *MultiBulkReply {
 	return &MultiBulkReply{args}
 }
 
-/**
-* StatusReply
- */
+/*
+StatusReply 状态回复
+@Status 回复的状态
+*/
 
 type StatusReply struct {
 	Status string
@@ -71,9 +75,10 @@ func MakeStatusReply(status string) *StatusReply {
 	return &StatusReply{Status: status}
 }
 
-/**
-*IntReply
- */
+/*
+IntReply 整数回复
+@Code 回复的状态码
+*/
 
 type IntReply struct {
 	Code int64
@@ -92,9 +97,10 @@ func MakeIntReply(code int) *IntReply {
 	return &IntReply{Code: int64(code)}
 }
 
-/**
-*StandardErrorReply
- */
+/*
+StandardErrorReply 标准错误回复
+@Status 回复的状态
+*/
 
 type StandardErrorReply struct {
 	Status string
@@ -112,9 +118,9 @@ func MakeStandardErrorReply(status string) *StandardErrorReply {
 	return &StandardErrorReply{Status: status}
 }
 
-/**
-*判断回复是否是错误回复
- */
+/*
+IsErrorReply 判断回复是否是错误回复
+*/
 func IsErrorReply(reply resp.Reply) bool {
 	return reply.ToBytes()[0] == '-'
 }
