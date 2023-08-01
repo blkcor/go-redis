@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/blkcor/go-redis/config"
 	"github.com/blkcor/go-redis/lib/logger"
+	"github.com/blkcor/go-redis/resp/handler"
 	"github.com/blkcor/go-redis/tcp"
 	"os"
 )
@@ -21,17 +22,17 @@ func fileExists(fileName string) bool {
 }
 
 func main() {
-	if fileExists(configFile) {
-		config.SetupConfig(configFile)
-	} else {
-		config.Properties = defaultProperties
-	}
+	//if fileExists(configFile) {
+	//	config.SetupConfig(configFile)
+	//} else {
+	config.Properties = defaultProperties
+	//}
 
 	tcpConfig := tcp.Config{
 		Address: fmt.Sprintf("%s:%d", config.Properties.Bind, config.Properties.Port),
 	}
 
-	err := tcp.ListenAndServeWithSignal(&tcpConfig, tcp.MakeHandler())
+	err := tcp.ListenAndServeWithSignal(&tcpConfig, handler.MakeHandler())
 	if err != nil {
 		logger.Error(err)
 	}

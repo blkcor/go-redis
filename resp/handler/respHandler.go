@@ -2,6 +2,7 @@ package handler
 
 import (
 	"context"
+	database2 "github.com/blkcor/go-redis/database"
 	"github.com/blkcor/go-redis/interface/database"
 	"github.com/blkcor/go-redis/lib/logger"
 	"github.com/blkcor/go-redis/lib/sync/atomic"
@@ -26,7 +27,7 @@ type RespHandler struct {
 
 func MakeHandler() *RespHandler {
 	var db database.Database
-	//TODO: init db
+	db = database2.NewEchoDatabase()
 	return &RespHandler{
 		db: db,
 	}

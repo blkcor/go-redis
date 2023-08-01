@@ -3,6 +3,7 @@ package parser
 import (
 	"bufio"
 	"errors"
+	"fmt"
 	"github.com/blkcor/go-redis/interface/resp"
 	"github.com/blkcor/go-redis/lib/logger"
 	"github.com/blkcor/go-redis/resp/reply"
@@ -172,7 +173,9 @@ parseMultiBulkHeader 解析多行消息头部
 func parseMultiBulkHeader(msg []byte, state *readState) error {
 	var err error
 	var expectedLine uint64
-	expectedLine, err = strconv.ParseUint(string(msg[1:len(msg)-2]), 10, 32)
+	re := string(msg[1 : len(msg)-2])
+	fmt.Println(re)
+	expectedLine, err = strconv.ParseUint(re, 10, 32)
 	if err != nil {
 		return errors.New("protocol error:" + string(msg))
 	}

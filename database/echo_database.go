@@ -10,7 +10,8 @@ type EchoDatabase struct {
 }
 
 func (e EchoDatabase) Exec(conn resp.Connection, args database.CmdLine) resp.Reply {
-	return reply.MakeMultiBulkReply(args)
+	result := reply.MakeMultiBulkReply(args)
+	return result
 }
 
 func (e EchoDatabase) Close() {
